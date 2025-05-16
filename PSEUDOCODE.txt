@@ -1,0 +1,47 @@
+START
+
+SET students as empty dictionary
+SET events = ["Databiz", "BIT Conference", "ROTC Month", "National Women Month"]
+
+FUNCTION register
+    ASK for student ID
+    ASK for name
+    ADD student to students with name and empty message list
+    PRINT welcome message
+
+FUNCTION show_events
+    PRINT "Campus Events"
+    FOR each event in events
+        PRINT event
+
+FUNCTION send_message
+    ASK for student ID
+    IF student exists
+        ASK for message
+        FOR each student in students
+            ADD message from sender to their messages
+        PRINT "Message sent"
+    ELSE
+        PRINT "Student not found"
+
+FUNCTION read_messages
+    ASK for student ID
+    IF student exists
+        PRINT all messages for that student
+    ELSE
+        PRINT "Student not found"
+
+FUNCTION menu
+    LOOP
+        PRINT options (1-5)
+        ASK for choice
+        IF 1: CALL register
+        IF 2: CALL show_events
+        IF 3: CALL send_message
+        IF 4: CALL read_messages
+        IF 5: PRINT goodbye and STOP
+        ELSE: PRINT "Invalid option"
+
+CALL menu
+
+END
